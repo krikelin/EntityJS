@@ -1,0 +1,22 @@
+{
+  "name": "EntityJS",
+  "version": "0.0.0",
+  "description": "Tesla browser",
+  "main": "web.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "express": "*"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:krikelin/EntityJS.git"
+  },
+  "author": "Alecca",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/krikelin/EntityJS/issues"
+  },
+  "homepage": "https://github.com/krikelin/EntityJS"
+}
