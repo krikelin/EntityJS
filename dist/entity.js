@@ -114,7 +114,7 @@ var entityjs = (function (exports) {
      * @class {exports.Resolver}
      **/
     exports.Resolver.prototype.acceptsUri = function (uri) {
-        return true;
+        return false;
     };
     
     /***
@@ -126,12 +126,6 @@ var entityjs = (function (exports) {
      **/
     exports.Resolver.prototype.request = function (method, uri, data) {
         var promise = new exports.Promise();
-        setTimeout(function () {
-            promise.setDone({
-                'status': '404 Not found',
-                'data': [] 
-            });
-        }, 100);
         return promise;
     };
     /***
@@ -181,7 +175,7 @@ var entityjs = (function (exports) {
                 return resolver;
             }
         }
-        return new exports.Resolver();
+        return null;
     };
     /***
      * Sends an abstract request

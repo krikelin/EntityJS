@@ -11,8 +11,8 @@ function search() {
     entity.request('GET', 'entity://music/track?q=' + encodeURI(document.getElementById('query').value), {}).done(function (result) {
        document.querySelector('#result').innerHTML = '';
        console.log(result);
-       for (var i = 0; i < result.songs.length; i++) {
-           var song = result.songs[i];
+       for (var i = 0; i < result.data.length; i++) {
+           var song = result.data[i];
            document.querySelector('#result').innerHTML += '<tr><td><a href="' + song.uri + '">' + song.name + '</a></td><td>' + song.artists[0].name + '</td></tr>';
            
        } 

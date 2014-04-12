@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>EntityJS demo</title>
+        <link rel="stylesheet" href="../css/entityjs.css" type="text/css" />
+        <link rel="stylesheet" href="http://artistconn.webfactional.com/dev/portal/css/bootstrap.min.css" type="text/css" />
+        <link rel="stylesheet" href="http://artistconn.webfactional.com/dev/portal/css/bootstrap-theme.css" type="text/css" />
+        
+    </head>
+    <body>
+        <div class="row">
+            <div class="container">
+                <div class="col-md-8">
+                    <label for="url">Entity URL</label>
+                    <div class="input-group">
+                           <input class="form-control" type="url" id="url" placeholder="Enter Entity URL" value="entity://music/track" id="query" name="q" />
+                       <div class="input-group-btn">
+                            <button class="btn btn-primary" onclick="search(event)">Find</button>   
+                      </div>
+                    </div>
+                   
+                     <label for="service">Search on</label>
+                <select id="resolver" name="service">
+                    <option value="MusicResolver">Mock</option>
+                    <option value="SpotifyResolver">Spotify</option>
+                    <option value="DeezerResolver">Deezer</option>
+                </select>
+                     <div class="code well" id="result"></div>
+                </div>
+               
+                
+            </div>
+        </div>
+        <script src="../entity.js" type="text/javascript"></script>
+        <script src="../resolvers/music.js" type="text/javascript"></script>
+        <script src="../resolvers/spotify.js" type="text/javascript"></script>
+        <script src="../resolvers/deezer.js" type="text/javascript"></script>
+        <script src="scripts/main.js" type="text/javascript"></script>
+        
+    </body>
+</html>

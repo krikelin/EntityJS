@@ -7,23 +7,24 @@
             <input type="search" placeholder="Search for a song" id="query" name="q" />
             <label for="service">Search on</label>
             <select id="resolver" name="service">
+                <option value="MusicResolver">Mock</option>
                 <option value="SpotifyResolver">Spotify</option>
                 <option value="DeezerResolver">Deezer</option>
             </select>
             <button onclick="search(event)">Find</button>    
         <table>
             <thead>
-                <th></th>
-                <th>Car</th>
-                <th>Model</th>
+                <th>Title</th>
+                <th>Artist</th>
             </thead>
             <tbody id="result">
                 
             </tbody>
         </table>
         <script src="../entity.js" type="text/javascript"></script>
-        <script src="scripts/resolvers/spotifyresolver.js" type="text/javascript"></script>
-        <script src="scripts/resolvers/deezerresolver.js" type="text/javascript"></script>
+        <script src="../resolvers/mock.js" type="text/javascript"></script>
+        <script src="../resolvers/spotify.js" type="text/javascript"></script>
+        <script src="../resolvers/deezer.js" type="text/javascript"></script>
         <script src="scripts/main.js" type="text/javascript"></script>
     </body>
 </html>

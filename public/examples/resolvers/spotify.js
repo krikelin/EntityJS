@@ -1,50 +1,58 @@
 (function (exports) {
-    var DeezerResolver = function (entity) {
+    var SpotifyResolver = function (entity) {
         this.entity = entity;
     };
-    DeezerResolver.prototype.acceptsUri = function (uri) {
+    SpotifyResolver.prototype.acceptsUri = function (uri) {
         return uri.match(/^entity\:\/\/music\/track/i) != null;
     };
-    DeezerResolver.prototype.request = function (method, uri, data) {
+   
+    SpotifyResolver.prototype.request = function (method, uri, data) {
        var promise = new Promise();
        var xmlHttp = new XMLHttpRequest();
-       var query = parseQueryString(uri.split('?')[1]);
+       console.log(query);
+       var query = null;
+       try {
+            query = parseQueryString(uri.split('?')[1]);
+       } catch (e) {
+            
+       }
+       
        xmlHttp.onreadystatechange = function () {
            if (xmlHttp.readyState == 4) {
                if (xmlHttp.status == 200) {
                    var data = JSON.parse(xmlHttp.responseText);
-                  var response = {songs: [], status: 'OK'};
+                  var response = {'data': [], 'status': 'OK'};
                   
                   // Format the response
-                  for (var i = 0; i < data.data.length; i++) {
-                      var track = data.data[i];
+                  for (var i = 0; i < data.tracks.length; i++) {
+                      var track = data.tracks[i];
                       var song = {
-                          'name': track.title,
-                          'uri': track.link,
+                          'name': track.name,
                           'artists':[
                             {
-                                'name': track.artist.name,
-                                'uri': track.artist.link
+                                'name': track.artists[0].name
                             }
                           ],
                           'album': {
                               'name': track.album.name,
-                              'uri': ''
+                              
                           }
                       };
-                      response.songs.push(song);
+                      response.data.push(song);
                   }
+                  console.log(response);
                   promise.setDone(response);
                } else {
                    promise.setFail({
                        'status': xmlHttp.status
                    });
                }
-           } 
+               console.log(xmlHttp.status);
+           }
        };
-       xmlHttp.open(method, 'https://api.deezer.com/search/?q=' + query.q, true);
+       xmlHttp.open(method, 'https://ws.spotify.com/search/1/track.json?q=' + query.q, true);
        xmlHttp.send(null);
        return promise;         
     };
-    exports.DeezerResolver = DeezerResolver;
-})(this);
+    exports.SpotifyResolver = SpotifyResolver;
+})(window);
